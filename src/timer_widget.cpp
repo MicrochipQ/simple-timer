@@ -89,6 +89,6 @@ void TimerWidget::OnTick()
     if (timeEdit->time() <= QTime(0, 0, 0, 0))
     {
         OnStop();
-        parent->SendNotification("В гробу перевернулся...", "Ура! Таймер наконец-то умер! :)");
+        parent->trayIcon->showMessage("В гробу перевернулся...", "Ура! Таймер наконец-то умер! :)");
     }
 }

@@ -10,12 +10,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow();
-    void SendNotification(const QString &title, const QString &msg);
-
-private:
     QSystemTrayIcon *trayIcon;
 
+    MainWindow();
+
+private:
     void setupUi();
 
     void ShowContextMenu(const QPoint &);
