@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include "timer_widget.h"
 
 TimerWidget::TimerWidget(MainWindow *parent)
@@ -42,6 +43,15 @@ void TimerWidget::setupUi()
 
 void TimerWidget::OnStart()
 {
+    if (timeEdit->time() == QTime(0, 0, 0, 0))
+    {
+        QMessageBox::warning(this, "Not a simple timer",
+                             "ТЫ Чё ДУРАК?!",
+                             QMessageBox::Yes | QMessageBox::YesToAll,
+                             QMessageBox::Yes);
+        return;
+    }
+
     timeEdit->setReadOnly(true);
 
     startButton->hide();
@@ -79,6 +89,6 @@ void TimerWidget::OnTick()
     if (timeEdit->time() <= QTime(0, 0, 0, 0))
     {
         OnStop();
-        parent->SendNotification("Hard Timer", "Timer died! :)");
+        parent->SendNotification("В гробу перевернулся...", "Ура! Таймер наконец-то умер! :)");
     }
 }

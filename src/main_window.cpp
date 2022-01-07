@@ -5,7 +5,7 @@
 
 MainWindow::MainWindow()
 {
-    trayIcon = new QSystemTrayIcon(this);
+    trayIcon = new QSystemTrayIcon(QIcon(QPixmap(32, 32)), this);
 
     setupUi();
 
@@ -50,6 +50,6 @@ void MainWindow::SwitchToStopwatch()
 void MainWindow::SendNotification(const QString &title, const QString &msg)
 {
     trayIcon->show();
-    trayIcon->showMessage(title, msg);
+    trayIcon->showMessage(title, msg, QSystemTrayIcon::MessageIcon::NoIcon);
     trayIcon->hide();
 }
