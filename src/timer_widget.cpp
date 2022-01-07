@@ -45,10 +45,11 @@ void TimerWidget::OnStart()
 {
     if (timeEdit->time() == QTime(0, 0, 0, 0))
     {
-        QMessageBox::warning(this, "Not a simple timer",
-                             "ТЫ Чё ДУРАК?!",
-                             QMessageBox::Yes | QMessageBox::YesToAll,
-                             QMessageBox::Yes);
+        QMessageBox messageBox(QMessageBox::Question, "Таймер, который умнее тебя", "ТЫ Чё ДУРАК?!", QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::Abort, this);
+        messageBox.setButtonText(QMessageBox::YesToAll, "ДА!!");
+        messageBox.setButtonText(QMessageBox::Yes, "Я дурак");
+        messageBox.setButtonText(QMessageBox::Abort, "Я выкидыш");
+        messageBox.exec();
         return;
     }
 
