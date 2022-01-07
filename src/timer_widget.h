@@ -6,16 +6,18 @@
 #include <QTimeEdit>
 #include <QTimer>
 #include <QWidget>
+#include <QSystemTrayIcon>
+#include "main_window.h"
 
 class TimerWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    TimerWidget(QWidget * = nullptr);
+    TimerWidget(MainWindow * = nullptr);
 
 private:
-    QWidget *parent;
+    MainWindow *parent;
     QHBoxLayout *layout;
     QTimeEdit *timeEdit;
     QPushButton *startButton;

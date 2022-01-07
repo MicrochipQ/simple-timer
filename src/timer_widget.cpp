@@ -1,6 +1,6 @@
 #include "timer_widget.h"
 
-TimerWidget::TimerWidget(QWidget *parent)
+TimerWidget::TimerWidget(MainWindow *parent)
     : QWidget(parent)
 {
     this->parent = parent;
@@ -76,4 +76,9 @@ void TimerWidget::OnStop()
 void TimerWidget::OnTick()
 {
     timeEdit->setTime(timeEdit->time().addSecs(-1));
+    if (timeEdit->time() <= QTime(0, 0, 0, 0))
+    {
+        OnStop();
+        parent->SendNotification("Hard Timer", "Timer died! :)");
+    }
 }
