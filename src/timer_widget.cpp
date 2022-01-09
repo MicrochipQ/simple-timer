@@ -20,7 +20,6 @@ TimerWidget::TimerWidget(MainWindow *parent)
 void TimerWidget::setupUi()
 {
     parent->setMinimumSize(340, 100);
-    parent->setMaximumSize(680, 200);
     parent->resize(parent->minimumSize());
 
     layout = new QHBoxLayout();
@@ -45,11 +44,7 @@ void TimerWidget::OnStart()
 {
     if (timeEdit->time() == QTime(0, 0, 0, 0))
     {
-        QMessageBox messageBox(QMessageBox::Question, "Таймер, который умнее тебя", "ТЫ Чё ДУРАК?!", QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::Abort, this);
-        messageBox.setButtonText(QMessageBox::YesToAll, "ДА!!");
-        messageBox.setButtonText(QMessageBox::Yes, "Я дурак");
-        messageBox.setButtonText(QMessageBox::Abort, "Я выкидыш");
-        messageBox.exec();
+        QMessageBox::warning(this, "Timer", "Please specify the time", QMessageBox::Ok);
         return;
     }
 
@@ -75,7 +70,7 @@ void TimerWidget::OnPause()
 void TimerWidget::OnStop()
 {
     timeEdit->setReadOnly(false);
-    timeEdit->setTime(QTime(0, 0, 0));
+    timeEdit->setTime(QTime(0, 0, 0, 0));
 
     startButton->show();
     stopButton->hide();
@@ -90,6 +85,6 @@ void TimerWidget::OnTick()
     if (timeEdit->time() <= QTime(0, 0, 0, 0))
     {
         OnStop();
-        parent->trayIcon->showMessage("В гробу перевернулся...", "Ура! Таймер наконец-то умер! :)");
+        parent->trayIcon->showMessage("Timer", "Ding-ding! :)");
     }
 }

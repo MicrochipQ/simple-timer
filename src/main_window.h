@@ -2,8 +2,6 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
-#include <QIcon>
-#include <QPixmap>
 
 class MainWindow : public QMainWindow
 {

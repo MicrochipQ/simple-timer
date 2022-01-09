@@ -1,11 +1,14 @@
+#include <QIcon>
 #include <QMenu>
+#include <QPixmap>
 #include "main_window.h"
 #include "timer_widget.h"
 #include "stopwatch_widget.h"
 
 MainWindow::MainWindow()
 {
-    trayIcon = new QSystemTrayIcon(QIcon(QPixmap(32, 32)), this);
+    // TODO: put a normal icon
+    trayIcon = new QSystemTrayIcon(QIcon(QPixmap(32, 32)));
     trayIcon->show();
 
     setupUi();
